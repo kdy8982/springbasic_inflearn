@@ -1,4 +1,9 @@
-package com.example.springbasic_inflearn.member;
+package com.example.springbasic_inflearn;
+
+import com.example.springbasic_inflearn.member.Grade;
+import com.example.springbasic_inflearn.member.Member;
+import com.example.springbasic_inflearn.member.MemberService;
+import com.example.springbasic_inflearn.member.MemberServiceImpl;
 
 public class MemberApp {
     public static void main(String[] args) {
