@@ -15,8 +15,12 @@ public class OrderServiceImpl implements OrderService {
     // ==> DIP 위반.
     // 이로인해 할인 정책 변경할 때, 클라이언트(OrderServiceImpl)의 수정이 불가피하다.
     // ==> OCP 위반
-    private DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    //    private DiscountPolicy discountPolicy = new RateDiscountPolicy();
     //    private DiscountPolicy discountPolicy = new FixDiscountPolicy();
+
+    // 해결책 : 인터페이스에만 의존하게 만든다. 하지만 구현하지 않았기에 오류가 난다.
+    private DiscountPolicy discountPolicy;
+
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
