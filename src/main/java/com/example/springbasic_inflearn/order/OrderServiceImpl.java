@@ -2,6 +2,7 @@ package com.example.springbasic_inflearn.order;
 
 import com.example.springbasic_inflearn.discount.DiscountPolicy;
 import com.example.springbasic_inflearn.discount.FixDiscountPolicy;
+import com.example.springbasic_inflearn.discount.RateDiscountPolicy;
 import com.example.springbasic_inflearn.member.Member;
 import com.example.springbasic_inflearn.member.MemberRepository;
 import com.example.springbasic_inflearn.member.MemoryMemberRepository;
@@ -9,7 +10,13 @@ import com.example.springbasic_inflearn.member.MemoryMemberRepository;
 public class OrderServiceImpl implements OrderService {
 
     private MemberRepository memberRepository = new MemoryMemberRepository();
-    private DiscountPolicy discountPolicy = new FixDiscountPolicy();
+
+    // OrderServiceImpl은 추상(DiscountPolicy)과 구현(RateDiscountPolicy) 모두 의존하고 있는 형국이다..
+    // ==> DIP 위반.
+    // 이로인해 할인 정책 변경할 때, 클라이언트(OrderServiceImpl)의 수정이 불가피하다.
+    // ==> OCP 위반
+    private DiscountPolicy discountPolicy = new RateDiscountPolicy();
+    //    private DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
