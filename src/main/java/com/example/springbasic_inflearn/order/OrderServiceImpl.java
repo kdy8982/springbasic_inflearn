@@ -9,7 +9,7 @@ import com.example.springbasic_inflearn.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private MemberRepository memberRepository = new MemoryMemberRepository();
+    //    private MemberRepository memberRepository = new MemoryMemberRepository();
 
     // OrderServiceImpl은 추상(DiscountPolicy)과 구현(RateDiscountPolicy) 모두 의존하고 있는 형국이다..
     // ==> DIP 위반.
@@ -18,9 +18,15 @@ public class OrderServiceImpl implements OrderService {
     //    private DiscountPolicy discountPolicy = new RateDiscountPolicy();
     //    private DiscountPolicy discountPolicy = new FixDiscountPolicy();
 
-    // 해결책 : 인터페이스에만 의존하게 만든다. 하지만 구현하지 않았기에 오류가 난다.
-    private DiscountPolicy discountPolicy;
+    // 해결책. 생성자 주입.
+    // DIP : 인터페이스에만 의존하고 있음.
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {

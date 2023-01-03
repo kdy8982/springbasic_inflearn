@@ -1,5 +1,6 @@
 package com.example.springbasic_inflearn.order;
 
+import com.example.springbasic_inflearn.AppConfig;
 import com.example.springbasic_inflearn.member.Grade;
 import com.example.springbasic_inflearn.member.Member;
 import com.example.springbasic_inflearn.member.MemberService;
@@ -12,8 +13,11 @@ import static org.junit.Assert.*;
 
 public class OrderServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
-    OrderService orderService = new OrderServiceImpl();
+//    MemberService memberService = new MemberServiceImpl();
+//    OrderService orderService = new OrderServiceImpl();
+    AppConfig appConfig = new AppConfig();
+    MemberService memberService = appConfig.memberService();
+    OrderService orderService = appConfig.orderService();
 
     @Test
     public void VIP인_경우_1000원_할인() throws Exception {

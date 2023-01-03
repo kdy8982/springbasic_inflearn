@@ -1,11 +1,15 @@
 package com.example.springbasic_inflearn.member;
 
+import com.example.springbasic_inflearn.AppConfig;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class MemberServiceTest {
 
-    MemberService memberService = new MemberServiceImpl();
+//    MemberService memberService = new MemberServiceImpl();
+
+    AppConfig appConfig = new AppConfig();
+    MemberService memberService = appConfig.memberService();
 
 
     @Test
