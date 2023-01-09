@@ -2,6 +2,7 @@ package com.example.springbasic_inflearn.singleton;
 
 import com.example.springbasic_inflearn.AppConfig;
 import com.example.springbasic_inflearn.member.MemberService;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -22,4 +23,14 @@ public class SingletonTest {
 
         assertThat(memberService1).isNotSameAs(memberService2);
     }
+
+    @Test
+    @DisplayName("싱글톤 패턴을 적용한 객체를 사용")
+    public void singletonServiceTest() throws Exception {
+        SingletonService singletonService1 = SingletonService.getInstance();
+        SingletonService singletonService2 = SingletonService.getInstance();
+
+        assertThat(singletonService1).isSameAs(singletonService2);
+    }
+
 }
