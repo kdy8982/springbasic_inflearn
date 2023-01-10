@@ -6,6 +6,7 @@ import com.example.springbasic_inflearn.member.MemberRepository;
 import com.example.springbasic_inflearn.member.MemberServiceImpl;
 import com.example.springbasic_inflearn.order.OrderServiceImpl;
 import org.junit.jupiter.api.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -17,7 +18,7 @@ public class ConfigurationSingletonTest {
         AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
 
         MemberServiceImpl memberService = ac.getBean("memberService", MemberServiceImpl.class);
-        OrderServiceImpl orderService = ac.getBean("orderService", OrderServiceImpl.class);
+        OrderServiceImpl orderService = ac.getBean( "orderService", OrderServiceImpl.class);
         MemberRepository memberRepository = ac.getBean("memberRepository", MemberRepository.class);
 
 
@@ -30,4 +31,16 @@ public class ConfigurationSingletonTest {
         assertThat(orderService.getMemberRepository()).isSameAs(memberRepository);
         assertThat(memberService.getMemberRepository()).isSameAs(orderService.getMemberRepository());
     }
+
+
+    @Test
+    public void configurationDeep() {
+        ApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+        AppConfig bean = ac.getBean(AppConfig.class);
+
+        // AppConfig$$EnhancerBySpringCGLIB
+        // 내가 생성한 AppConfig가 아닌 CGLIB이 바이트코드를 조작해서 객체를 등록한다 -> CGLIB이 싱글톤을 보장해준다!
+        System.out.println("bean = " + bean.getClass());
+    }
+
 }
