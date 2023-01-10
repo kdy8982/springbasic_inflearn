@@ -22,4 +22,9 @@ public class MemberServiceImpl implements MemberService {
     public Member findMember(Long memberId) {
         return memberRepository.findById(memberId);
     }
+
+    // 테스트 용도. 인터페이스에 없다.
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
+    }
 }

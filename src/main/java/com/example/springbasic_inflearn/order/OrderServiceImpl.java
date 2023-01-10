@@ -1,11 +1,8 @@
 package com.example.springbasic_inflearn.order;
 
 import com.example.springbasic_inflearn.discount.DiscountPolicy;
-import com.example.springbasic_inflearn.discount.FixDiscountPolicy;
-import com.example.springbasic_inflearn.discount.RateDiscountPolicy;
 import com.example.springbasic_inflearn.member.Member;
 import com.example.springbasic_inflearn.member.MemberRepository;
-import com.example.springbasic_inflearn.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
@@ -38,5 +35,10 @@ public class OrderServiceImpl implements OrderService {
         int discountPrice = discountPolicy.discount(member, itemPrice);
 
         return new Order(memberId, itemName, itemPrice, discountPrice);
+    }
+
+    // 테스트 용도. 인터페이스에 없다.
+    public MemberRepository getMemberRepository() {
+        return memberRepository;
     }
 }
