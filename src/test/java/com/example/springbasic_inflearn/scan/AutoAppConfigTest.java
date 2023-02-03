@@ -3,12 +3,10 @@ package com.example.springbasic_inflearn.scan;
 import com.example.springbasic_inflearn.AutoAppConfig;
 import com.example.springbasic_inflearn.member.MemberService;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.beans.factory.config.BeanDefinition;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.testng.annotations.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AutoAppConfigTest {
     AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AutoAppConfig.class);
