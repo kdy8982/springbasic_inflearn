@@ -23,15 +23,15 @@ public class OrderServiceImpl implements OrderService {
     // DIP : 인터페이스에만 의존하고 있음.
     private MemberRepository memberRepository;
     private DiscountPolicy discountPolicy;
-/*
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
-*/
 
+    // 수정자 주입 (권장하지 않는 방법. 수정자 주입 대신 생성자 주입을 사용하라!)
+    /*
     @Autowired
     public void setMemberRepository(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -40,7 +40,7 @@ public class OrderServiceImpl implements OrderService {
     public void setDiscountPolicy(DiscountPolicy discountPolicy) {
         this.discountPolicy = discountPolicy;
     }
-
+    */
     @Override
     public Order createOrder(Long memberId, String itemName, int itemPrice) {
         Member member = memberRepository.findById(memberId);
