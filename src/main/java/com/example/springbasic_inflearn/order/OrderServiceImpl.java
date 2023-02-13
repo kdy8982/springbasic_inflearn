@@ -21,8 +21,8 @@ public class OrderServiceImpl implements OrderService {
 
     // 해결책. 생성자 주입.
     // DIP : 인터페이스에만 의존하고 있음.
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
     @Autowired
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
